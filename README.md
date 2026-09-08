@@ -25,7 +25,7 @@
 
 ### 2. Clone 仓库并作为 Vault 打开
 ```bash
-git clone https://github.com/<你的用户名>/team-knowledge.git
+git clone https://github.com/sunlingfeng70/team-knowledge.git
 ```
 在 Obsidian 中：**Open folder as vault** → 选择刚 clone 的 `team-knowledge` 目录。
 
