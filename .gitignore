@@ -1,0 +1,17 @@
+# Obsidian workspace state (machine-specific, don't commit)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Trash
+.trash/
+
+# macOS
+.DS_Store
+
+# Node / tooling (if any later)
+node_modules/
+*.log
+
+# Pi agent runtime dir
+.pi/
+.context/
