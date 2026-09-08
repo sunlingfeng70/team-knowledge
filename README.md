@@ -1,22 +1,26 @@
 # 团队知识库 (Team Knowledge Base)
 
-团队唯一的文档知识库。基于 **Obsidian** 管理，用 **GitHub** 作为文件管理与协作中枢，团队成员通过 **Obsidian Git 插件** 自动同步。
+团队唯一的文档知识库。基于 **Obsidian** 管理，用 **GitHub** 作为文件管理与协作中枢，团队成员通过 **Obsidian Git 插件** 自动同步。内容自动构建发布为团队 Wiki 站点。
 
+> 🌐 **已发布站点**：<https://sunlingfeng70.github.io/team-knowledge/>（push 到 `main` 后自动更新）
+>
 > ⚠️ 本仓库为 **公有仓库**：任何人可读。**绝不提交**密钥、密码、Token、内部敏感数据。
 
 ## 目录结构
 
+> 💡 **Obsidian Vault 在 `content/` 子目录**（Quartz 发布框架的内容源）。团队日常编辑**只在这个目录里**；仓库根目录是 Quartz 发布工程，一般不动。
+
 | 目录 | 用途 |
 |------|------|
-| `00-Inbox/` | 快速随手记（未分类） |
-| `10-Projects/` | 进行中/历史项目文档 |
-| `20-Areas/` | 长期领域知识 |
-| `30-Resources/` | 参考资料、素材 |
-| `40-Archive/` | 归档 |
-| `_templates/` | 文档模板 |
-| `_attachments/` | 图片/附件统一存放 |
+| `content/00-Inbox/` | 快速随手记（未分类） |
+| `content/10-Projects/` | 进行中/历史项目文档 |
+| `content/20-Areas/` | 长期领域知识 |
+| `content/30-Resources/` | 参考资料、素材 |
+| `content/40-Archive/` | 归档（**不会发布到站点**） |
+| `content/_templates/` | 文档模板（**不会发布到站点**） |
+| `content/_attachments/` | 图片/附件统一存放 |
 
-首页入口见 [`index.md`](index.md)。
+首页入口见 [`content/index.md`](content/index.md)。
 
 ## 🚀 新成员 5 步上手
 
@@ -27,10 +31,12 @@
 ```bash
 git clone https://github.com/sunlingfeng70/team-knowledge.git
 ```
-在 Obsidian 中：**Open folder as vault** → 选择刚 clone 的 `team-knowledge` 目录。
+在 Obsidian 中：**Open folder as vault** → 选择刚 clone 目录下的 **`content/`** 文件夹。
 
-### 3. 安装 Obsidian Git 插件
-设置 → 第三方插件 → 关闭安全模式 → 浏览社区插件 → 搜索 **Obsidian Git** → 安装并启用。
+> 打开 `content/` 而非仓库根，因为该子目录才是 Vault。仓库已提交 obsidian-git 插件配置，打开后同步插件即可用。
+
+### 3. 启用 Obsidian Git 插件
+仓库已自带该插件配置，若未启用：设置 → 第三方插件 → 启用 **Obsidian Git**。
 
 ### 4. 配置访问令牌 (PAT) 与自动同步
 1. 在 GitHub 生成 **fine-grained PAT**（仅本仓库 Read/Write 权限）：

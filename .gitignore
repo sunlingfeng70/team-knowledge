@@ -13,6 +13,15 @@
 node_modules/
 *.log
 
+# Quartz static site build output
+public/
+.quartz-cache/
+tsconfig.tsbuildinfo
+prof/
+private/
+.replit
+replit.nix
+
 # Pi agent runtime dir
 .pi/
 .context/
