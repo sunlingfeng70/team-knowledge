@@ -36,15 +36,18 @@ git clone https://github.com/sunlingfeng70/team-knowledge.git
 > 打开 `content/` 而非仓库根，因为该子目录才是 Vault。仓库已提交 obsidian-git 插件配置，打开后同步插件即可用。
 
 ### 3. 启用 Obsidian Git 插件
+
 仓库已自带该插件配置，若未启用：设置 → 第三方插件 → 启用 **Obsidian Git**。
 
 ### 4. 配置访问令牌 (PAT) 与自动同步
+
 1. 在 GitHub 生成 **fine-grained PAT**（仅本仓库 Read/Write 权限）：
    GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token → 勾选本仓库 Content: Read/Write。
 2. 在 Obsidian Git 插件设置里填入认证（HTTPS + PAT）。
 3. 设置自动备份间隔 `Auto backup interval (minutes)` = **10**，自动拉取间隔 `Auto pull interval (minutes)` = **10**。
 
 ### 5. 开始记录
+
 从 `00-Inbox` 随手记，用 `_templates` 模板创建正式文档。
 
 ## 🤝 同步三原则（务必遵守）
