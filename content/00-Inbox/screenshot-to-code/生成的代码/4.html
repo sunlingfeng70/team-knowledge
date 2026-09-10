@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>墨库 · 书房</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <style>
+    *{box-sizing:border-box} body{margin:0;background:#f8fafc;color:#111827;font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px} button{transition:.15s} button:active{transform:translateY(1px)}
+    .serif{font-family:Georgia,"Songti SC",serif}.icon-btn{width:34px;height:34px;display:grid;place-items:center;border-radius:6px;color:#667085}.icon-btn:hover{background:#f1f5f9;color:#1683e7}.nav-item{height:42px;border-radius:6px;display:flex;align-items:center;gap:12px;padding:0 12px;color:#52606d;cursor:pointer}.nav-item:hover{background:#f4f7fa}.nav-item.active{background:#e7f1fd;color:#111827}.nav-item i{width:16px;text-align:center}.panel{border:1px solid #e4e7eb;background:white;border-radius:7px}.book-cover{width:100%;height:100%;object-fit:cover;display:block}.fine{color:#667085}.bar{height:6px;border-radius:5px;background:#edf1f5;overflow:hidden}.bar>span{display:block;height:100%;border-radius:5px;background:#2389e8}.recommend-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.rec-img{height:265px;background:#f5f7f9;border:1px solid #e1e5e9;border-radius:6px;overflow:hidden;display:flex;align-items:center;justify-content:center}.rec-img img{height:100%;max-width:100%;object-fit:contain;transition:.2s}.rec:hover img{transform:scale(1.018)}
+    @media(max-width:1100px){.stats{grid-template-columns:repeat(2,1fr)!important}.content-grid{grid-template-columns:1fr!important}.right-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.recommend-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:700px){#sidebar{transform:translateX(-100%);transition:.2s;z-index:40}#sidebar.open{transform:translateX(0)}main{margin-left:0!important}.top-search{width:calc(100vw - 130px)!important}.page{padding:22px 16px!important}.stats{grid-template-columns:1fr!important}.continue{grid-template-columns:90px 1fr!important;padding:18px!important}.continue .cover{height:138px!important}.right-col{grid-template-columns:1fr}.recommend-grid{grid-template-columns:1fr 1fr;gap:12px}.rec-img{height:220px}.mobile-menu{display:grid!important}.greeting{font-size:26px!important}}
+  </style>
+</head>
+<body>
+  <aside id="sidebar" class="fixed left-0 top-0 bottom-0 w-[218px] bg-white border-r border-gray-200 flex flex-col">
+    <div class="h-[74px] flex items-center px-6 border-b border-gray-100">
+      <div class="w-9 h-9 rounded-lg bg-[#1683e7] text-white grid place-items-center text-lg font-bold serif">墨</div>
+      <div class="ml-3"><div class="font-bold text-[17px] serif">墨库</div><div class="text-[10px] tracking-[3px] text-gray-500">AI · 书房</div></div>
+    </div>
+    <nav class="px-4 pt-4">
+      <p class="text-xs text-gray-500 px-3 mb-2">书房</p>
+      <div class="nav-item active"><i class="fas fa-th-large text-[#1683e7]"></i><span>概览</span></div>
+      <div class="nav-item"><i class="fas fa-book-open"></i><span>我的藏书</span><span class="ml-auto text-xs">128</span></div>
+      <div class="nav-item"><i class="far fa-sun"></i><span>AI 助手</span></div>
+      <p class="text-xs text-gray-500 px-3 mt-5 mb-2">数据</p>
+      <div class="nav-item"><i class="fas fa-chart-bar"></i><span>阅读统计</span></div>
+    </nav>
+    <div class="mt-auto border-t border-gray-200 m-4 pt-5 flex items-center gap-3">
+      <div class="w-9 h-9 rounded-full bg-blue-100 text-blue-600 grid place-items-center font-bold">林</div>
+      <div><div class="font-semibold">林默</div><div class="text-xs text-gray-500 mt-1">AI 会员 · 畅读版</div></div>
+    </div>
+  </aside>
+
+  <main class="ml-[218px] min-h-screen">
+    <header class="h-[74px] bg-white border-b border-gray-200 flex items-center px-6 sticky top-0 z-30">
+      <button id="menuBtn" class="mobile-menu hidden icon-btn mr-2"><i class="fas fa-bars"></i></button>
+      <div class="top-search w-[420px] h-[46px] border border-gray-200 rounded-lg flex items-center px-4 text-gray-400 bg-white">
+        <i class="fas fa-search mr-3"></i><input class="outline-none flex-1 text-gray-700 min-w-0" placeholder="搜索书名、作者，或用自然语言问 AI..." />
+        <kbd class="border border-gray-200 rounded px-2 py-1 text-xs text-gray-500">⌘ K</kbd>
+      </div>
+      <div class="ml-auto flex items-center gap-3"><button class="icon-btn" title="通知"><i class="far fa-bell"></i></button><button id="addBook" class="h-10 px-4 rounded-md bg-[#1683e7] hover:bg-blue-600 text-white font-semibold"><i class="fas fa-plus mr-2"></i>录入藏书</button></div>
+    </header>
+
+    <div class="page p-6 max-w-[1800px] mx-auto">
+      <div class="flex justify-between items-end mb-7">
+        <div><div class="text-gray-500 text-sm mb-3">3月19日　·　周四</div><h1 class="greeting text-[30px] font-bold tracking-normal serif">晚上好，林默</h1></div>
+        <div class="hidden md:block text-xs text-gray-500">AI 已就绪　·　可以随时提问</div>
+      </div>
+
+      <section class="stats grid grid-cols-4 gap-3 mb-5">
+        <div class="panel p-5 h-[138px]"><div class="flex justify-between"><span>藏书总量</span><i class="fas fa-book-open text-gray-500"></i></div><div class="serif text-2xl mt-4">128</div><div class="fine text-xs mt-2">电子 + 纸质藏书</div><div class="text-xs text-emerald-600 mt-2">▲ 本月 +9</div></div>
+        <div class="panel p-5 h-[138px]"><div class="flex justify-between"><span>正在阅读</span><i class="fas fa-bolt text-gray-500"></i></div><div class="serif text-2xl mt-4">3</div><div class="fine text-xs mt-2">本在读，AI 已同步进度</div><div class="text-xs text-amber-500 mt-2">2 本接近读完</div></div>
+        <div class="panel p-5 h-[138px]"><div class="flex justify-between"><span>本月读完</span><i class="fas fa-check text-gray-500"></i></div><div class="serif text-2xl mt-4">9</div><div class="fine text-xs mt-2">读完即自动归档</div><div class="text-xs text-emerald-600 mt-2">▲ 较上月 +2</div></div>
+        <div class="panel p-5 h-[138px]"><div class="flex justify-between"><span>累计阅读</span><i class="far fa-clock text-gray-500"></i></div><div class="serif text-2xl mt-4">214<span class="text-sm ml-1">小时</span></div><div class="fine text-xs mt-2">今年记录总时长</div><div class="text-xs text-gray-500 mt-2">连续打卡 32 天</div></div>
+      </section>
+
+      <div class="content-grid grid grid-cols-[minmax(0,1fr)_310px] gap-5">
+        <div>
+          <section class="continue panel p-5 grid grid-cols-[105px_minmax(0,1fr)] gap-5 min-h-[260px] items-center">
+            <div class="cover h-[185px] rounded shadow overflow-hidden"><img class="book-cover" src="https://covers.openlibrary.org/b/isbn/9780765382030-L.jpg" alt="三体封面"></div>
+            <div class="max-w-[620px]"><span class="inline-block text-xs px-2 py-1 rounded bg-blue-50 text-blue-600 mb-3">继续阅读</span><h2 class="text-xl font-bold serif">三体</h2><p class="fine mt-2">刘慈欣 · 科幻 · 硬科幻</p><div class="flex justify-between mt-5 mb-2"><span class="text-sm">第 2 部 · 黑暗森林</span><strong class="text-sm">68%</strong></div><div class="bar"><span style="width:68%"></span></div><p class="mt-4 pl-3 border-l-2 border-blue-400 text-gray-500 leading-6"><strong class="text-gray-800">AI 记忆：</strong>你上次读到罗辑和识别暗森林法则，停在第 47 页。上次阅读约 2 天前。</p><div class="mt-4 flex items-center gap-4"><button class="bg-[#1683e7] text-white h-10 px-5 rounded-md font-semibold"><i class="fas fa-play mr-2 text-xs"></i>继续阅读</button><button class="text-gray-500 hover:text-blue-600">查看 AI 摘要</button></div></div>
+          </section>
+
+          <section class="panel mt-5 p-5">
+            <div class="flex items-center justify-between mb-5"><h2 class="text-xl font-bold serif">为你推荐</h2><button id="refresh" class="text-xs text-gray-500 hover:text-blue-600">基于你的偏好生成 · 换一批</button></div>
+            <div id="books" class="recommend-grid">
+              <article class="rec"><div class="rec-img"><img src="https://covers.openlibrary.org/b/isbn/9780765382030-L.jpg" alt="三体"></div><h3 class="font-semibold mt-3">三体</h3><p class="fine text-xs mt-1">刘慈欣</p><p class="text-xs text-blue-600 mt-2">AI · 与你口味 96% 匹配</p></article>
+              <article class="rec"><div class="rec-img"><img src="https://covers.openlibrary.org/b/isbn/9780060883287-L.jpg" alt="百年孤独"></div><h3 class="font-semibold mt-3">百年孤独</h3><p class="fine text-xs mt-1">加西亚·马尔克斯</p><p class="text-xs text-blue-600 mt-2">AI · 已收藏 · 魔幻现实主义</p></article>
+              <article class="rec"><div class="rec-img"><img src="https://covers.openlibrary.org/b/isbn/9780156012195-L.jpg" alt="小王子"></div><h3 class="font-semibold mt-3">小王子</h3><p class="fine text-xs mt-1">圣埃克苏佩里</p><p class="text-xs text-blue-600 mt-2">AI · 睡前重读推荐</p></article>
+              <article class="rec"><div class="rec-img"><img src="https://covers.openlibrary.org/b/isbn/9781975382575-L.jpg" alt="白夜行"></div><h3 class="font-semibold mt-3">白夜行</h3><p class="fine text-xs mt-1">东野圭吾</p><p class="text-xs text-blue-600 mt-2">AI · 推理 · 已读 32%</p></article>
+            </div>
+          </section>
+        </div>
+
+        <aside class="right-col static w-auto bg-transparent border-0 block">
+          <section class="panel p-5 border-blue-200 bg-[#fff8fa] mb-5"><div class="text-blue-600 text-xs mb-3"><i class="far fa-star mr-2"></i>AI 阅读洞察</div><p class="leading-6">你最近的阅读中，<strong class="text-blue-600">科幻与推理占比上升至 58%</strong>，比上月高 12 个百分点。基于此，AI 整理了 <strong class="text-blue-600">5 本新书</strong>纳入你的待读清单。</p></section>
+          <section class="panel p-5 mb-5"><div class="flex justify-between items-center mb-6"><h2 class="text-xl font-bold serif">本周阅读</h2><span class="fine text-xs">单位 · 分钟 / 天</span></div><div id="week" class="space-y-5"></div></section>
+          <section class="panel p-5"><h3 class="font-bold serif mb-2">AI 可以帮你</h3><p class="fine text-xs mb-3">对整座书房提问，而不只是搜索书名。</p><ul class="space-y-3 text-xs"><li><span class="text-emerald-500 mr-2">●</span>给任何一本书写一段摘要</li><li><span class="text-emerald-500 mr-2">●</span>按你的口味生成待读书单</li><li><span class="text-emerald-500 mr-2">●</span>在笔记里定位某段话</li></ul></section>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-4 py-3 rounded-md shadow-lg opacity-0 pointer-events-none transition z-50">已打开藏书录入</div>
+  <script>
+    const week=[['周一',42],['周二',70],['周三',55],['周四',88],['周五',34],['周六',61],['周日',74]];
+    document.querySelector('#week').innerHTML=week.map(([d,v])=>`<div class="grid grid-cols-[36px_1fr_28px] items-center gap-3 text-xs"><span class="fine">${d}</span><div class="bar"><span style="width:${v}%"></span></div><span class="fine text-right">${v}</span></div>`).join('');
+    document.querySelector('#menuBtn').onclick=()=>document.querySelector('#sidebar').classList.toggle('open');
+    document.querySelector('#addBook').onclick=()=>{const t=document.querySelector('#toast');t.classList.remove('opacity-0');setTimeout(()=>t.classList.add('opacity-0'),1800)};
+    document.querySelector('#refresh').onclick=function(){this.textContent='推荐已更新 · 换一批';document.querySelector('#books').animate([{opacity:.4},{opacity:1}],{duration:350})};
+    document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();document.querySelector('input').focus()}});
+  </script>
+</body>
+</html>

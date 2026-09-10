@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>墨库 · 书房</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <style>
+    :root{--blue:#1479dd;--ink:#0e1014;--muted:#626a73;--line:#dde1e5;--soft:#f7f8fa}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-width:1100px;background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;font-size:14px}
+    body{overflow-x:auto}
+    .app-shell{display:flex;min-height:100vh;border-top:1px solid #20252e}
+    .sidebar{width:289px;flex:0 0 289px;border-right:1px solid #dfe3e8;background:#fff;display:flex;flex-direction:column;padding:28px 18px 20px 23px}
+    .brand{display:flex;align-items:flex-start;gap:14px;padding:2px 9px 0}
+    .brand-mark{width:38px;height:38px;border-radius:8px;background:#1479dd;color:#fff;display:grid;place-items:center;font-size:19px;font-weight:700;line-height:1}
+    .brand-name{font-size:18px;font-weight:700;line-height:20px}.brand-sub{font-size:10px;color:#6b7178;letter-spacing:2px;margin-top:5px}
+    .side-title{font-size:13px;color:#646b72;margin:42px 12px 10px}
+    .nav{display:grid;gap:7px}.nav-item{height:48px;border-radius:11px;display:flex;align-items:center;padding:0 14px;color:#626a72;font-size:16px;gap:15px;cursor:pointer;transition:.2s}.nav-item:hover{background:#f3f6fa}.nav-item.active{background:#e7f2ff;color:#10151a}.nav-item i{width:18px;text-align:center;color:#65717a}.nav-item.active i{color:#1678db}.nav-item .count{margin-left:auto;font-size:12px;color:#666f79}
+    .side-bottom{margin-top:auto;border-top:1px solid #dfe3e7;padding:24px 9px 1px;display:flex;align-items:center;gap:13px}.avatar{width:38px;height:38px;background:#d9ecff;color:#1680df;border-radius:50%;display:grid;place-items:center;font-size:17px}.person{font-size:15px;font-weight:700}.person-sub{font-size:11px;color:#737b83;margin-top:4px}
+    .main{min-width:811px;flex:1;background:#fff}.topbar{height:98px;border-bottom:1px solid #dfe3e8;display:flex;align-items:center;padding:0 31px;gap:28px}.search{width:552px;height:63px;border:1px solid #d8dde2;border-radius:13px;display:flex;align-items:center;color:#9aa1a8;padding:0 17px;box-shadow:0 1px 4px #00000004 inset}.search i{font-size:16px;margin-right:16px}.search input{border:0;outline:0;flex:1;font-size:16px;color:#4c535a;background:transparent}.search input::placeholder{color:#a1a7ad}.key{width:35px;height:43px;border:1px solid #d9dde2;border-radius:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:16px;font-size:11px;color:#747c83}.bell{margin-left:auto;color:#626b74;font-size:17px;cursor:pointer;padding:10px}.primary{background:var(--blue);color:#fff;border:0;border-radius:12px;padding:0 20px;height:46px;font-size:16px;display:flex;align-items:center;gap:11px;cursor:pointer;box-shadow:0 2px 3px #1479dd28}.primary:hover{background:#096bc8}
+    .content{padding:31px 32px 60px}.date{color:#636a72;font-size:15px;margin-bottom:17px}.headline-row{display:flex;align-items:end;justify-content:space-between;margin-bottom:31px}.headline{font-size:32px;letter-spacing:1px;font-weight:750;margin:0}.status{color:#6b7076;font-size:13px}.status b{color:#4d555e;font-weight:500;margin:0 11px}
+    .metrics{display:grid;grid-template-columns:1.08fr 1.08fr 1.08fr .97fr;gap:16px;margin-bottom:24px}.metric{height:181px;border:1px solid #dce1e5;border-radius:15px;padding:25px 22px;position:relative;background:#fff;box-shadow:0 1px 2px #00000003}.metric h3{font-size:16px;font-weight:500;margin:0;color:#111820}.metric-icon{position:absolute;right:23px;top:25px;color:#6c747d;font-size:16px}.metric-number{font-family:Georgia,serif;font-size:31px;margin-top:22px}.metric-desc{color:#656d74;margin-top:11px;font-size:13px}.metric-trend{font-size:13px;margin-top:12px;color:#219653}.metric-trend.yellow{color:#c89d00}
+    .continue{height:350px;border:1px solid #dce1e5;border-radius:15px;margin-bottom:24px;padding:32px 24px;display:flex;align-items:center}.continue-inner{display:flex;align-items:center;gap:29px;margin-left:1px}.book-small{width:135px;height:188px !important;border-radius:5px;flex:none;box-shadow:0 2px 7px #18264130;overflow:hidden}.continue-info{width:390px}.pill{display:inline-block;background:#eaf5ff;color:#1479dd;border-radius:20px;padding:6px 13px;font-size:13px;margin-bottom:13px}.continue h2{font-size:27px;margin:0 0 7px;font-weight:750}.author{font-size:15px;color:#656c75;margin-bottom:23px}.chapter-row{display:flex;justify-content:space-between;color:#69717a;font-size:14px;margin-bottom:11px}.chapter-row b{color:#111820}.progress{height:5px;background:#e2e6ea;border-radius:10px;overflow:hidden}.progress > span{display:block;width:68%;height:100%;background:var(--blue);border-radius:10px}.memory{border-left:2px solid #66aef0;padding:2px 0 2px 14px;color:#6b747d;line-height:24px;font-size:14px;margin-top:21px}.memory strong{color:#101820}.actions{margin-top:20px;display:flex;align-items:center;gap:20px}.continue-btn{height:46px;background:var(--blue);border:0;color:#fff;border-radius:12px;padding:0 20px;font-size:15px;font-weight:600;cursor:pointer}.summary{color:#6b737b;font-size:15px;cursor:pointer}.summary:hover{color:var(--blue)}
+    .recommend{border:1px solid #dce1e5;border-radius:15px;padding:27px 24px 26px}.section-title{font-size:23px;font-weight:750;margin:0 0 29px}.book-grid{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:20px}.book-card{min-width:0}.cover{height:600px;border:1px solid #dce1e5;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fafbfc;box-shadow:0 1px 2px #00000008}.cover-inner{height:100%;width:100%;position:relative;overflow:hidden}.cover-title{font-weight:800}.cover-meta{font-size:12px}.book-title{font-size:15px;font-weight:700;margin-top:14px}.book-author{color:#697079;font-size:13px;margin-top:8px}.book-note{color:#0e79e0;font-size:13px;margin-top:9px}
+    .three{background:radial-gradient(circle at 50% 25%,#3b497c,#13173d 43%,#080e25 90%);color:#d3ee35;padding:28px 26px}.three .top{font-size:11px;letter-spacing:3px;color:#cce942}.three .cixin{font-size:31px;letter-spacing:3px;color:#f6f8ed;margin-top:6px}.three .eng{font-size:35px;line-height:.95;letter-spacing:-1px;margin-top:43px;text-align:center}.three .planet{position:absolute;width:75%;height:25%;bottom:-4%;left:12%;background:linear-gradient(170deg,#dce9fb,#283a8d 52%,#0b163e);clip-path:polygon(8% 0,90% 20%,100% 100%,0 100%);opacity:.92}.three .grid-lines{position:absolute;inset:35% -20% 0;background:repeating-linear-gradient(145deg,transparent 0 16px,#7190bd30 17px 18px),repeating-linear-gradient(35deg,transparent 0 18px,#7190bd25 19px 20px);transform:perspective(180px) rotateX(25deg);opacity:.7}
+    .solitude{background:#0b0c0d;color:#f5ecd9;padding-top:35px}.solitude .red-lines{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 18%,transparent 0 10%,#7c152544 11% 11.6%,transparent 12%),radial-gradient(ellipse at 90% 34%,transparent 0 14%,#7c152544 14.4% 15%,transparent 15.5%),repeating-linear-gradient(126deg,transparent 0 22px,#7c152544 23px 24px),repeating-linear-gradient(33deg,transparent 0 38px,#7c152544 39px 40px)}.solitude .label{position:absolute;left:12%;right:12%;top:38%;background:#f6f0dc;color:#473e34;text-align:center;padding:24px 6px}.solitude .label .cn{font-size:30px;letter-spacing:2px}.solitude .label small{display:block;font-size:10px;margin-top:8px}.solitude .band{position:absolute;bottom:0;left:0;right:0;height:22%;background:#f6f0dc;color:#b23b20;font-size:17px;display:grid;place-items:center;font-weight:700}
+    .prince{background:#fae291;color:#191817;padding-top:46px;text-align:center}.prince .small-cn{font-size:12px;color:#51605e}.prince .main-cn{font-size:46px;letter-spacing:5px;margin-top:10px}.prince .subtitle{font-size:15px;margin-top:3px}.prince .planet{position:absolute;bottom:12%;left:18%;width:64%;height:22%;border-radius:50%;background:linear-gradient(140deg,#99cee5,#3275af);transform:rotate(-11deg)}.prince .boy{position:absolute;bottom:27%;left:47%;width:20px;height:90px;background:#4b9659;border-radius:9px 9px 2px 2px;z-index:2}.prince .head{position:absolute;top:-24px;left:2px;width:17px;height:21px;border-radius:50%;background:#f2c58c}.prince .stars{position:absolute;inset:28% 10%;font-size:21px;color:#e2a956;letter-spacing:35px;line-height:70px}.night{background:linear-gradient(#a78e02,#dfae08 35%,#9a7900 100%);color:#fff3ba;padding-top:45px}.night .city{position:absolute;inset:0;background:linear-gradient(145deg,transparent 0 45%,#604b0733 46% 49%,transparent 50%),repeating-linear-gradient(90deg,transparent 0 21px,#5c490927 22px 24px);opacity:.9}.night .night-cn{position:relative;font-size:53px;font-weight:800;letter-spacing:5px;text-align:center;text-shadow:0 2px 1px #786100;margin-top:78px}.night .author-cn{position:relative;text-align:center;font-size:14px;margin-top:11px}
+    .right-rail{width:336px;flex:0 0 336px;padding:98px 23px 20px 0;background:#fff}.insight,.stats,.help{border:1px solid #dce1e5;border-radius:15px;padding:24px 25px}.insight{height:147px;background:#fff7fa;border-color:#c8d9ef;margin-bottom:24px;color:#39434e;line-height:23px}.insight-title{color:#1479dd;font-size:14px;margin-bottom:12px}.insight strong{color:#0876da}.stats{height:423px;margin-bottom:24px}.rail-heading{font-size:23px;font-weight:750;margin:0}.unit{float:right;color:#626a72;font-size:12px;font-weight:400;margin-top:7px}.bars{clear:both;padding-top:42px}.bar-row{display:grid;grid-template-columns:38px 1fr 28px;gap:13px;align-items:center;height:55px;border-bottom:1px solid #e0e3e6;color:#646c75;font-size:13px}.bar-row:last-child{border-bottom:0}.bar{height:9px;background:#3191e8;border-radius:8px}.help{height:194px}.help h3{font-size:17px;margin:0 0 11px}.help p{color:#68717a;margin:0 0 12px;line-height:20px}.help ul{margin:0;padding:0;list-style:none;line-height:27px;color:#313a42}.help li::before{content:'•';color:#2eaa69;font-size:17px;margin-right:9px}
+    .toast{position:fixed;right:24px;bottom:24px;padding:13px 18px;border-radius:10px;background:#17212d;color:#fff;opacity:0;transform:translateY(12px);transition:.25s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}
+    @media(max-width:1500px){.sidebar{width:250px;flex-basis:250px}.right-rail{width:300px;flex-basis:300px}.cover{height:470px}.continue-info{width:340px}.headline{font-size:28px}}
+    @media(max-width:1180px){.right-rail{display:none}.book-grid{grid-template-columns:repeat(4,1fr)}.cover{height:430px}.search{width:470px}}
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">墨</div><div><div class="brand-name">墨库</div><div class="brand-sub">AI · 书房</div></div></div>
+      <div class="side-title">书库</div>
+      <nav class="nav">
+        <div class="nav-item active"><i class="fas fa-th-large"></i><span>概览</span></div>
+        <div class="nav-item"><i class="fas fa-book-open"></i><span>我的藏书</span><span class="count">128</span></div>
+        <div class="nav-item"><i class="far fa-sun"></i><span>AI 助手</span></div>
+      </nav>
+      <div class="side-title" style="margin-top:28px">数据</div>
+      <nav class="nav">
+        <div class="nav-item"><i class="fas fa-chart-bar"></i><span>阅读统计</span></div>
+      </nav>
+      <div class="side-bottom"><div class="avatar">林</div><div><div class="person">林默</div><div class="person-sub">AI 会员 · 畅读版</div></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <label class="search"><i class="fas fa-search"></i><input id="searchInput" placeholder="搜索书名、作者，或用自然语言询问 AI..."/><span class="key">⌘<br/>K</span></label>
+        <i class="far fa-bell bell" id="bell" title="通知"></i><button class="primary" id="addBtn"><span>＋</span>录入藏书</button>
+      </header>
+      <section class="content">
+        <div class="date">3月19日 <span style="margin:0 10px">·</span> 周四</div>
+        <div class="headline-row"><h1 class="headline">晚上好，林默</h1><div class="status">AI 已就绪 <b>·</b> 可以随时提问</div></div>
+        <div class="metrics">
+          <article class="metric"><i class="fas fa-book-open metric-icon"></i><h3>藏书总量</h3><div class="metric-number">128</div><div class="metric-desc">电子 + 纸质藏书</div><div class="metric-trend">▲ &nbsp;本月 +9</div></article>
+          <article class="metric"><i class="fas fa-bolt metric-icon"></i><h3>正在阅读</h3><div class="metric-number">3</div><div class="metric-desc">本在读，AI 已同步进度</div><div class="metric-trend yellow">2 &nbsp;本接近读完</div></article>
+          <article class="metric"><i class="fas fa-check metric-icon"></i><h3>本月读完</h3><div class="metric-number">9</div><div class="metric-desc">读完即自动归档</div><div class="metric-trend">▲ &nbsp;较上月 +2</div></article>
+          <article class="metric"><i class="far fa-clock metric-icon"></i><h3>累计阅读</h3><div class="metric-number">214<span style="font-family:inherit;font-size:17px;margin-left:4px">小时</span></div><div class="metric-desc">今年记录总时长</div><div class="metric-desc">连续打卡 32 天</div></article>
+        </div>
+        <article class="continue">
+          <div class="continue-inner"><div class="book-small cover"><div class="cover-inner three"><div class="top">NEW YORK TIMES BESTSELLING AUTHOR</div><div class="cixin">CIXIN LIU</div><div class="eng">THE<br/>THREE-BODY<br/>PROBLEM</div><div class="grid-lines"></div><div class="planet"></div></div></div>
+            <div class="continue-info"><div class="pill">继续阅读</div><h2>三体</h2><div class="author">刘慈欣 · 科幻 · 硬科幻</div><div class="chapter-row"><span>第 2 部 · 黑暗森林</span><b>68%</b></div><div class="progress"><span id="readingProgress"></span></div><div class="memory"><strong>AI 记忆：</strong>你上次读到罗辑初遇黑暗森林法则，停在第 47 页。上次阅读约 2 天前。</div><div class="actions"><button class="continue-btn" id="continueBtn"><i class="fas fa-play" style="font-size:11px;margin-right:10px"></i>继续阅读</button><span class="summary" id="summaryBtn">查看 AI 摘要</span></div></div>
+          </div>
+        </article>
+        <section class="recommend"><h2 class="section-title">为你推荐</h2><div class="book-grid" id="bookGrid">
+          <article class="book-card" data-search="三体 刘慈欣 科幻"><div class="cover"><div class="cover-inner three"><div class="top">NEW YORK TIMES BESTSELLING AUTHOR</div><div class="cixin">CIXIN LIU</div><div class="eng">THE<br/>THREE-BODY<br/>PROBLEM</div><div class="grid-lines"></div><div class="planet"></div></div></div><div class="book-title">三体</div><div class="book-author">刘慈欣</div><div class="book-note">AI · 与你口味 96% 匹配</div></article>
+          <article class="book-card" data-search="百年孤独 加西亚 马尔克斯 文学"><div class="cover"><div class="cover-inner solitude"><div class="red-lines"></div><div class="label"><div class="cn">百年孤独</div><small>加西亚·马尔克斯</small></div><div class="band">中文版全球首次正式授权</div></div></div><div class="book-title">百年孤独</div><div class="book-author">加西亚·马尔克斯</div><div class="book-note">AI · 已收录 · 魔幻现实主义</div></article>
+          <article class="book-card" data-search="小王子 圣埃克苏佩里 绘本"><div class="cover"><div class="cover-inner prince"><div class="small-cn">安东尼·德·圣·埃克苏佩里</div><div class="main-cn">小王子</div><div class="subtitle">The Little Prince in Cantonese with Jyutping</div><div class="stars">✦　　·　✦<br/>　·　✦　　　·</div><div class="planet"></div><div class="boy"><div class="head"></div></div></div></div><div class="book-title">小王子</div><div class="book-author">圣埃克苏佩里</div><div class="book-note">AI · 睡前重读推荐</div></article>
+          <article class="book-card" data-search="白夜行 东野圭吾 推理"><div class="cover"><div class="cover-inner night"><div class="city"></div><div class="night-cn">白夜行</div><div class="author-cn">东野圭吾</div></div></div><div class="book-title">白夜行</div><div class="book-author">东野圭吾</div><div class="book-note">AI · 推理 · 已读 32%</div></article>
+        </div></section>
+      </section>
+    </main>
+    <aside class="right-rail">
+      <section class="insight"><div class="insight-title">☆ AI 阅读洞察</div>你最近的阅读中，<strong>科幻与推理占比提升 58%</strong>，比上月高 12 个百分点。基于此，AI 整理了 <strong>5 本新书</strong>纳入你的待读清单。</section>
+      <section class="stats"><h2 class="rail-heading">本周阅读 <span class="unit">单位：分钟 / 天</span></h2><div class="bars"><div class="bar-row"><span>周一</span><div class="bar" style="width:56%"></div><span>42</span></div><div class="bar-row"><span>周二</span><div class="bar" style="width:93%"></div><span>70</span></div><div class="bar-row"><span>周三</span><div class="bar" style="width:73%"></div><span>55</span></div><div class="bar-row"><span>周四</span><div class="bar" style="width:100%"></div><span>88</span></div><div class="bar-row"><span>周五</span><div class="bar" style="width:45%"></div><span>34</span></div><div class="bar-row"><span>周六</span><div class="bar" style="width:69%"></div><span>61</span></div><div class="bar-row"><span>周日</span><div class="bar" style="width:84%"></div><span>74</span></div></div></section>
+      <section class="help"><h3>AI 可以帮你</h3><p>对整座书房提问，而不只是搜索书名。</p><ul><li>给任何一本书写一段摘要</li><li>按你的口味生成待读书单</li><li>在笔记里定位某段话</li></ul></section>
+    </aside>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script>
+    const toast=document.getElementById('toast'); let timer;
+    function notify(text){toast.textContent=text;toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),2200)}
+    document.querySelectorAll('.nav-item').forEach(item=>item.addEventListener('click',()=>{document.querySelectorAll('.nav-item').forEach(x=>x.classList.remove('active'));item.classList.add('active');notify('已切换到「'+item.querySelector('span').textContent+'」')}));
+    document.getElementById('addBtn').addEventListener('click',()=>notify('打开录入藏书')); document.getElementById('bell').addEventListener('click',()=>notify('暂无新的通知'));
+    document.getElementById('continueBtn').addEventListener('click',()=>{const p=document.getElementById('readingProgress');p.style.width='72%';notify('已继续阅读《三体》')}); document.getElementById('summaryBtn').addEventListener('click',()=>notify('AI 摘要正在为你准备'));
+    document.getElementById('searchInput').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();document.querySelectorAll('.book-card').forEach(card=>card.style.display=!q||card.dataset.search.toLowerCase().includes(q)?'block':'none')});
+  </script>
+</body>
+</html>
