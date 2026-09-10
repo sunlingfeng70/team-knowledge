@@ -23,3 +23,20 @@ replit.nix
 # Pi agent runtime dir
 .pi/
 .context/
+# Obsidian本机配置，团队协同不提交
+.obsidian/
+.obsidian/cache
+.obsidian/workspace.json
+
+# Mac系统文件
+.DS_Store
+
+# AI agent 本地配置
+.agents/
+.claude/
+.opencode/
+
+# 编辑器备份文件
+*.save
+
+/.agents/skills
