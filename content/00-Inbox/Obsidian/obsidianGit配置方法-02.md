@@ -1,3 +1,4 @@
+这里是ObsidianMac的配置方法和首次使用技巧
 ## 一、部署过程
 1，目前Obsidian没有Auto授权Git-token方法，需要三方测试使用。
 2，还没有找到其它三方方法。
@@ -103,7 +104,7 @@ ssh ‑T git@github.com
 
 出现 `Hi xxx! You've successfully authenticated` 代表 SSH 密钥整套通了。
 
-## Obsidian使用技巧
+## 三、Obsidian使用技巧
 
 ### 找到Obsidian-Git工具
 右侧 Ribbon（侧边小图标栏），找到 **分支 / 源代码图标**，点一下 → Git 源代码控制面板会在**右侧**弹出来。
@@ -148,3 +149,16 @@ ssh ‑T git@github.com
 保存。
 
 > 作用：告诉 Git 忽略 `.obsidian` 文件夹下所有配置，不再出现一大堆 U 未追踪文件。
+
+### 显示PPT等文件方法
+Obsidian 默认策略：**只自动识别、展示 Markdown（.md）、canvas 等笔记类文件，PPTX 这类二进制文件默认不加载显示**，虽然文件在硬盘，但是侧边树看不见。
+#### 分步修复（按顺序执行）
+
+##### 开启 Obsidian「显示全部文件类型」
+
+1. 打开 Obsidian，进入**设置（⚙️） → Files & Links（文件与链接）**
+2. 找到选项：`Detect all file extensions` ✅ **打开这个开关**（这个就是控制是否显示 pptx/pdf/png 等非 md 文件的核心选项）
+##### 检查排除文件规则
+1. 设置 → Files & Links，找到 `Excluded files` 确认里面**没有写 `*.pptx`**，如果有就删掉这一条过滤规则。
+##### 注：
+	检查一下原目录是否真实存在。
