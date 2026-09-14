@@ -1,4 +1,4 @@
-这里是首次配置的Obsidian配置Git方法，如需配置mac可参考[[obsidianGit配置方法-02]]
+
 ## Step1，安装obsidian
 
 ![image-20260910102549248](img/image-20260910102549248.png)
