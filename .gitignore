@@ -40,3 +40,4 @@ replit.nix
 *.save
 
 /.agents/skills
+/.obsidian
