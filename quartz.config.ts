@@ -15,7 +15,7 @@ const config: QuartzConfig = {
     analytics: null,
     locale: "zh-CN",
     baseUrl: "sunlingfeng70.github.io/team-knowledge",
-    ignorePatterns: ["_templates", "40-Archive", ".obsidian"],
+    ignorePatterns: ["_templates", "_附件/资料", "**.canvas", "**.base"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",

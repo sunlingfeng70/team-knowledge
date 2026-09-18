@@ -1,9 +1,8 @@
 name: Deploy Quartz site to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
+  # 只保留手动触发：push 不再自动上线，避免「写入即发布」无审核闸门
+  # 需要发布时到 Actions 页面点 Run workflow
   workflow_dispatch:
 
 permissions:
