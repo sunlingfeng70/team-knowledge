@@ -6,7 +6,7 @@ tags: [研发, 架构, pi-agent, 产品层]
 created: 2026-09-11
 updated: 2026-09-11
 status: active
-source: team-knowledge 改造前 01-公共区/00-个人区
+source: team-knowledge 改造前 01-公开区/00-个人区
 ---
 
 # pi 产品层知识总纲（pi-coding-agent）
