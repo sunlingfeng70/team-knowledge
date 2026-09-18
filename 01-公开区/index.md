@@ -10,8 +10,6 @@ title: 团队知识库
 欢迎来到团队唯一的文档知识库。这里沉淀项目、领域知识和参考资料，所有内容以 Git 管理。
 
 > ⚠️ **本仓库公有可见**：任何人可读。**绝不提交**密钥、密码、Token、内部敏感数据。
->
-> 🌐 站点：<https://sunlingfeng70.github.io/team-knowledge/>（**已改为手动发布**，需要上线时到 Actions 点 Run workflow）
 
 ## 🧭 目录导航
 
