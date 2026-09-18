@@ -6,7 +6,7 @@ tags: [参考, 工具, Obsidian, Git]
 created: 2026-09-17
 updated: 2026-09-17
 status: active
-source: team-knowledge 改造前 content/00-Inbox
+source: team-knowledge 改造前 01-公共区/00-个人区
 ---
 
 	这里是ObsidianMac的配置方法和首次使用技巧，主要两种方式，包括：使用Obsidian可直接使用授权Git-token和配置本地Git上传公钥，通过SSH方式连接Git可用（mac适用此方式）。

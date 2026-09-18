@@ -58,3 +58,9 @@ CONTEXT.md
 
 # 本次改造报告：含内网架构、脱敏前的 key 来源、内部治理细节，绝不公开
 team-knowledge-改造报告.md
+
+# Copilot 技能包（AI 工具本地配置，非团队知识）
+copilot/
+
+# 内部设计草案（含内网架构）
+.scratch/

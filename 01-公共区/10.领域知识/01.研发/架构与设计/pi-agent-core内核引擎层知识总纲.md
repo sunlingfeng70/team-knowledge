@@ -6,7 +6,7 @@ tags: [研发, 架构, pi-agent, 内核引擎]
 created: 2026-09-11
 updated: 2026-09-11
 status: active
-source: team-knowledge 改造前 content/00-Inbox
+source: team-knowledge 改造前 01-公共区/00-个人区
 ---
 
 # pi 内核层知识总纲（pi-agent-core）
