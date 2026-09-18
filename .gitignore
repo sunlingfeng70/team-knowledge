@@ -20,6 +20,9 @@ private/
 .replit
 replit.nix
 
+# 本地克隆的 Quartz 引擎（发布用，不入库；CI 按固定版本自行拉取）
+engine/
+
 # Pi agent runtime dir
 .pi/
 .context/
@@ -38,9 +41,11 @@ replit.nix
 
 # 编辑器备份文件
 *.save
+.gitattributes
 
 /.agents/skills
 /.obsidian
+/.github
 
 # ============================================================
 # 内部文档：含内网 Gitea / Authentik / MCP 凭据架构设计，绝不公开

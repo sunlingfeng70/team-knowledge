@@ -12,7 +12,7 @@
 
 ## 🧭 目录结构
 
-仓库根同时是 **Obsidian Vault** 和 **Quartz 发布工程**。
+仓库根是 **Obsidian Vault**。站点发布用 Quartz，但 **Quartz 引擎不入库**——它是上游开源代码（[jackyzha0/quartz](https://github.com/jackyzha0/quartz)），发布时由 CI 按固定版本自动拉取。本仓库只放**内容 + 站点配置**，根目录保持干净。
 
 ```
 team-knowledge/
@@ -21,7 +21,7 @@ team-knowledge/
 │       ├── 随手记……
 │       └── _去向.md             AI 每次把内容搬进正式区后，在这里追加一行
 │
-├── 01-公开区/                     ← Quartz 内容源（这里的都会公开）
+├── 01-公开区/                     ← 发布源（只有这里会被拷进站点）
 │   ├── index.md                 首页导航
 │   ├── 10.领域知识/             可复用的领域知识
 │   │   └── 01.研发/  02.业务/  03.运维/
@@ -31,16 +31,16 @@ team-knowledge/
 │   ├── _templates/              文档模板（不发布）
 │   └── _附件/                   图片与附件统一存放（必须发布，否则全站图挂）
 │
-├── quartz/  package.json  …     Quartz 构建引擎（**必须保留**，构建站点靠它）
+├── publish/                      站点配置（Quartz 的 config / layout，构建时拷进引擎）
+├── .github/workflows/deploy.yml  发布流水线：拉引擎 → 装配 → 构建 → 上线
 └── 已 ignore，绝不进仓库：
-    ├── .scratch/                内部设计草案（含内网架构）
-    ├── copilot/                 Copilot 技能包（AI 工具本地配置）
-    ├── CONTEXT.md               内部治理口径
-    └── **/.obsidian/  **/.claudian/   本机配置与会话记录
+    ├── .scratch/  copilot/  CONTEXT.md              内部文档与本地工具
+    ├── .agents/  .claude/  .opencode/  .obsidian/   AI 工具与本机配置
+    └── **/.claudian/                                AI 会话记录
 ```
 
-> **两个目录的编号**：`00-个人区` 与 `01-公开区` 是并列的两区，编号只表示「先个人、后公共」。
-> Quartz 只读 `01-公开区/`，`00-个人区/` 在它视野之外——这是硬边界。
+> **两个目录的编号**：`00-个人区` 与 `01-公开区` 是并列的两区，编号只表示「先个人、后公开」。
+> 发布边界是**目录隔离**：流水线只把 `01-公开区/` 拷进引擎，`00-个人区/` 根本不会被复制——这是硬边界。
 
 ### 两张表：每个目录怎么用
 
@@ -82,7 +82,7 @@ git clone https://github.com/sunlingfeng70/team-knowledge.git
 在 Obsidian 中：**Open folder as vault** → 选择刚 clone 的**仓库根目录**（不是 `01-公开区/`）。
 
 > 仓库根打开时，`00-个人区`（个人区）和 `01-公开区`（正式区）都能看到。
-> 想少看几个技术目录，可以把 `quartz`、`node_modules`、`copilot` 加进 Obsidian 的「排除文件」设置。
+> 想少看几个技术目录，可以把 `publish`、`copilot`、`.agents`、`.claude`、`.opencode` 加进 Obsidian 的「排除文件」设置。
 ### 3. 启用 Obsidian Git 插件
 
 仓库已自带该插件配置，若未启用：设置 → 第三方插件 → 启用 **Obsidian Git**。
